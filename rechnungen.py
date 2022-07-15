@@ -46,7 +46,8 @@ def erstelleRechnung():
 
     final_dict = {}
     keys_final_dict = ["Pos", "LeistungsID","Bezeichnung der Leistung", "Anzahl", "Einzelpreis"]
-    anzahl = 0
+    anzahl = 1
+    liste_dict = []
 
     
     for key in journal:
@@ -65,12 +66,23 @@ def erstelleRechnung():
                 bezeichnungen = hole_bezeichnung(leistungs_ids[i])
                 position += 1
                 anzahl += 1
+                print("test")
                 final_dict["Pos"] = position
                 final_dict["LeistungsID"] = leistungs_ids[i]
                 final_dict["Bezeichnung der Leistung"] = bezeichnungen
                 final_dict["Anzahl"] = anzahl
                 final_dict["EinzelPreis"] = 2
-            #elif kunden_ids[i] == kunden_ids[j] and leistungs_ids[i] != leistungs_ids[j]:
+            elif kunden_ids[i] == kunden_ids[j] and leistungs_ids[i] != leistungs_ids[j]:
+                bezeichnung = hole_bezeichnung(leistungs_ids[i])
+                position += 1
+                anzahl = 1
+                final_dict["Pos"] = position
+                final_dict["LeistungsID"] = leistungs_ids[i]
+                final_dict["Bezeichnung der Leistung"] = bezeichnungen
+                final_dict["Anzahl"] = anzahl
+                final_dict["EinzelPreis"] = 2
+                
+                
                 
                        # else:
                            # position = 1
@@ -78,6 +90,7 @@ def erstelleRechnung():
                             
                             #erst Liste von Werten machen und dann an dict appenden, sonst werden values jedes mal überschrieben
                             #muss noch ein else schreiben weil manchmal switch
+                            #das geht nicht mit dicts!!!! weil key value paar eindeutig...vllt alles direkt in csv schreiben
     print(final_dict)
                 
 def main():
