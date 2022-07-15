@@ -61,24 +61,35 @@ def erstelleRechnung():
     for i in range(len(kunden_ids)):
         for j in range(i + 1, len(kunden_ids)):
             print(kunden_ids)
-            if kunden_ids[i] == kunden_ids[j]:
-                #guck ob leistungsids gleich sind
-                for x in range(len(leistungs_ids)):
-                    for y in range(i + 1, len(leistungs_ids)):
-                        if leistungs_ids[x] == leistungs_ids[y]:
-                            bezeichnungen = hole_bezeichnung(leistungs_ids[x])
-                            position + 1
-                            anzahl + 1
-                            final_dict["Pos"] = position
-                            final_dict["LeistungsID"] = leistungs_ids[x]
-                            final_dict["Bezeichnung der Leistung"] = bezeichnungen
-                            final_dict["Anzahl"] = anzahl
-                            final_dict["EinzelPreis"] = 2
+            if kunden_ids[i] == kunden_ids[j] and leistungs_ids[i] == leistungs_ids[j]:
+                bezeichnungen = hole_bezeichnung(leistungs_ids[i])
+                position += 1
+                anzahl += 1
+                final_dict["Pos"] = position
+                final_dict["LeistungsID"] = leistungs_ids[i]
+                final_dict["Bezeichnung der Leistung"] = bezeichnungen
+                final_dict["Anzahl"] = anzahl
+                final_dict["EinzelPreis"] = 2
+            #elif kunden_ids[i] == kunden_ids[j] and leistungs_ids[i] != leistungs_ids[j]:
+                
+                       # else:
+                           # position = 1
+                           # anzahl = 1
+                            
+                            #erst Liste von Werten machen und dann an dict appenden, sonst werden values jedes mal überschrieben
+                            #muss noch ein else schreiben weil manchmal switch
     print(final_dict)
                 
 def main():
 
     erstelleRechnung()
+    my_dict = {'Bla': [], 'Bli': []}
+    testding = randrange(5)
+
+    for key in my_dict:
+        my_dict['Bla'].append(testding)
+    print(my_dict)
+            
     
 if __name__ == "__main__":
     main()
