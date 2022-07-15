@@ -42,6 +42,12 @@ def erstelleRechnung():
 
     position = 0
     rechnungen = []
+    bezeichnung = ""
+
+    final_dict = {}
+    keys_final_dict = ["Pos", "LeistungsID","Bezeichnung der Leistung", "Anzahl", "Einzelpreis"]
+    anzahl = 0
+
     
     for key in journal:
         if key == 'KundenID':
@@ -60,10 +66,15 @@ def erstelleRechnung():
                 for x in range(len(leistungs_ids)):
                     for y in range(i + 1, len(leistungs_ids)):
                         if leistungs_ids[x] == leistungs_ids[y]:
-                            #hole leistungsbezeichnung
+                            bezeichnungen = hole_bezeichnung(leistungs_ids[x])
                             position + 1
-
-                            print("yeah")
+                            anzahl + 1
+                            final_dict["Pos"] = position
+                            final_dict["LeistungsID"] = leistungs_ids[x]
+                            final_dict["Bezeichnung der Leistung"] = bezeichnungen
+                            final_dict["Anzahl"] = anzahl
+                            final_dict["EinzelPreis"] = 2
+    print(final_dict)
                 
 def main():
 
