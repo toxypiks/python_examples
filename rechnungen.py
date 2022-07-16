@@ -73,31 +73,30 @@ def erstelleRechnung(records):
                     position += 1
                     anzahl += 1
                     print("test")
-                    for i in range(5):
-                        Pos  = position
-                        LeistungsID = leistungs_ids[j]
-                        Bezeichnung_der_Leistung = bezeichnungen
-                        Anzahl = anzahl
-                        EinzelPreis = 2
+                    #for i in range(5):
+                    Pos  = position
+                    LeistungsID = leistungs_ids[j]
+                    Bezeichnung_der_Leistung = bezeichnungen
+                    Anzahl = anzahl
+                    EinzelPreis = 2
 
-                        writer.writerow({
-                            "Pos" : Pos,
-                            "LeistungsID" : LeistungsID,
-                            "Bezeichnung_der_Leistung" : Bezeichnung_der_Leistung,
-                            "Anzahl" : Anzahl,
-                            "EinzelPreis" : EinzelPreis
-                        })
+                    writer.writerow({
+                        "Pos" : Pos,
+                        "LeistungsID" : LeistungsID,
+                        "Bezeichnung_der_Leistung" : Bezeichnung_der_Leistung,
+                        "Anzahl" : Anzahl,
+                        "EinzelPreis" : EinzelPreis
+                    })
                         #Ergebnisse erst in Liste dann in csv damit gleiche Werte zusammen gefasst werden
                 elif kunden_ids[i] == kunden_ids[j] and leistungs_ids[i] != leistungs_ids[j]:
                     bezeichnung = hole_bezeichnung(leistungs_ids[j])
                     position += 1
                     anzahl = 1
-                    for i in range(5):
-                        Pos  = position
-                        LeistungsID = leistungs_ids[j]
-                        Bezeichnung_der_Leistung = bezeichnungen
-                        Anzahl = anzahl
-                        EinzelPreis = 20
+                    Pos  = position
+                    LeistungsID = leistungs_ids[j]
+                    Bezeichnung_der_Leistung = bezeichnungen
+                    Anzahl = anzahl
+                    EinzelPreis = 20
 
                     writer.writerow({
                             "Pos" : Pos,
@@ -110,12 +109,12 @@ def erstelleRechnung(records):
                     bezeichnung = hole_bezeichnung(leistungs_ids[i])
                     position += 1
                     anzahl = 1
-                    for i in range(5):
-                        Pos  = position
-                        LeistungsID = leistungs_ids[i]
-                        Bezeichnung_der_Leistung = bezeichnungen
-                        Anzahl = anzahl
-                        EinzelPreis = 20
+                    #for i in range(5):
+                    Pos  = position
+                    LeistungsID = leistungs_ids[i]
+                    Bezeichnung_der_Leistung = bezeichnungen
+                    Anzahl = anzahl
+                    EinzelPreis = 20
 
                     writer.writerow({
                             "Pos" : Pos,
