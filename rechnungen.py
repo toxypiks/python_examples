@@ -75,7 +75,7 @@ def erstelleRechnung(records):
                     print("test")
                     for i in range(5):
                         Pos  = position
-                        LeistungsID = leistungs_ids[i]
+                        LeistungsID = leistungs_ids[j]
                         Bezeichnung_der_Leistung = bezeichnungen
                         Anzahl = anzahl
                         EinzelPreis = 2
@@ -87,18 +87,44 @@ def erstelleRechnung(records):
                             "Anzahl" : Anzahl,
                             "EinzelPreis" : EinzelPreis
                         })
+                        #Ergebnisse erst in Liste dann in csv damit gleiche Werte zusammen gefasst werden
+                elif kunden_ids[i] == kunden_ids[j] and leistungs_ids[i] != leistungs_ids[j]:
+                    bezeichnung = hole_bezeichnung(leistungs_ids[j])
+                    position += 1
+                    anzahl = 1
+                    for i in range(5):
+                        Pos  = position
+                        LeistungsID = leistungs_ids[j]
+                        Bezeichnung_der_Leistung = bezeichnungen
+                        Anzahl = anzahl
+                        EinzelPreis = 20
 
+                    writer.writerow({
+                            "Pos" : Pos,
+                            "LeistungsID" : LeistungsID,
+                            "Bezeichnung_der_Leistung" : Bezeichnung_der_Leistung,
+                            "Anzahl" : Anzahl,
+                            "EinzelPreis" : EinzelPreis
+                        })
+                elif kunden_ids[i] != kunden_ids[j]:
+                    bezeichnung = hole_bezeichnung(leistungs_ids[i])
+                    position += 1
+                    anzahl = 1
+                    for i in range(5):
+                        Pos  = position
+                        LeistungsID = leistungs_ids[i]
+                        Bezeichnung_der_Leistung = bezeichnungen
+                        Anzahl = anzahl
+                        EinzelPreis = 20
+
+                    writer.writerow({
+                            "Pos" : Pos,
+                            "LeistungsID" : LeistungsID,
+                            "Bezeichnung_der_Leistung" : Bezeichnung_der_Leistung,
+                            "Anzahl" : Anzahl,
+                            "EinzelPreis" : EinzelPreis
+                        })
                     
-                        print("Yeahhhhhhh")
-            #elif kunden_ids[i] == kunden_ids[j] and leistungs_ids[i] != leistungs_ids[j]:
-                #bezeichnung = hole_bezeichnung(leistungs_ids[i])
-                #position += 1
-                #anzahl = 1
-                #final_dict["Pos"] = position
-                #final_dict["LeistungsID"] = leistungs_ids[i]
-                #final_dict["Bezeichnung der Leistung"] = bezeichnungen
-                #final_dict["Anzahl"] = anzahl
-                #final_dict["EinzelPreis"] = 2
                 
                 
                 
