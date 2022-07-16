@@ -1,3 +1,4 @@
+import csv
 from random import randrange
 
 def hole_journalsatz():
@@ -34,7 +35,7 @@ def schreibe_rechnungssumme(rechnungssumme):
 
 journal = {'Datum': ["2016-04-01","2016-04-10","2016-04-10","2016-04-03","2016-04-11","2016-04-05"],'KundenID':["K00091","K00091","K00091","K01234","K01234","K01234"],'LeistungsID': [100076,100076,500123,200234,200234,200356],'EinzelPreis': [2.40,2.40,15.00,20.00,20.00,15.00],'Anzahl': [2,3,1,1,1,1]}
 
-def erstelleRechnung():
+def erstelleRechnung(records):
     kunden_ids = []
     leistungs_ids = []
     einzelpreise_liste = []
@@ -59,28 +60,45 @@ def erstelleRechnung():
             einzelpreise_liste = list(journal.values())[3]
         if key == 'Anzahl':
             anzahl_liste = list(journal.values())[4]
-    for i in range(len(kunden_ids)):
-        for j in range(i + 1, len(kunden_ids)):
-            print(kunden_ids)
-            if kunden_ids[i] == kunden_ids[j] and leistungs_ids[i] == leistungs_ids[j]:
-                bezeichnungen = hole_bezeichnung(leistungs_ids[i])
-                position += 1
-                anzahl += 1
-                print("test")
-                final_dict["Pos"] = position
-                final_dict["LeistungsID"] = leistungs_ids[i]
-                final_dict["Bezeichnung der Leistung"] = bezeichnungen
-                final_dict["Anzahl"] = anzahl
-                final_dict["EinzelPreis"] = 2
-            elif kunden_ids[i] == kunden_ids[j] and leistungs_ids[i] != leistungs_ids[j]:
-                bezeichnung = hole_bezeichnung(leistungs_ids[i])
-                position += 1
-                anzahl = 1
-                final_dict["Pos"] = position
-                final_dict["LeistungsID"] = leistungs_ids[i]
-                final_dict["Bezeichnung der Leistung"] = bezeichnungen
-                final_dict["Anzahl"] = anzahl
-                final_dict["EinzelPreis"] = 2
+
+    with open("rechnungen.csv", 'wt') as csvFile:
+        headers = ["Pos","LeistungsID","Bezeichnung_der_Leistung","Anzahl","EinzelPreis"]
+        writer = csv.DictWriter(csvFile,fieldnames=headers)
+        writer.writeheader()
+        for i in range(len(kunden_ids)):
+            for j in range(i + 1, len(kunden_ids)):
+                print(kunden_ids)
+                if kunden_ids[i] == kunden_ids[j] and leistungs_ids[i] == leistungs_ids[j]:
+                    bezeichnungen = hole_bezeichnung(leistungs_ids[i])
+                    position += 1
+                    anzahl += 1
+                    print("test")
+                    for i in range(5):
+                        Pos  = position
+                        LeistungsID = leistungs_ids[i]
+                        Bezeichnung_der_Leistung = bezeichnungen
+                        Anzahl = anzahl
+                        EinzelPreis = 2
+
+                        writer.writerow({
+                            "Pos" : Pos,
+                            "LeistungsID" : LeistungsID,
+                            "Bezeichnung_der_Leistung" : Bezeichnung_der_Leistung,
+                            "Anzahl" : Anzahl,
+                            "EinzelPreis" : EinzelPreis
+                        })
+
+                    
+                        print("Yeahhhhhhh")
+            #elif kunden_ids[i] == kunden_ids[j] and leistungs_ids[i] != leistungs_ids[j]:
+                #bezeichnung = hole_bezeichnung(leistungs_ids[i])
+                #position += 1
+                #anzahl = 1
+                #final_dict["Pos"] = position
+                #final_dict["LeistungsID"] = leistungs_ids[i]
+                #final_dict["Bezeichnung der Leistung"] = bezeichnungen
+                #final_dict["Anzahl"] = anzahl
+                #final_dict["EinzelPreis"] = 2
                 
                 
                 
@@ -91,11 +109,11 @@ def erstelleRechnung():
                             #erst Liste von Werten machen und dann an dict appenden, sonst werden values jedes mal überschrieben
                             #muss noch ein else schreiben weil manchmal switch
                             #das geht nicht mit dicts!!!! weil key value paar eindeutig...vllt alles direkt in csv schreiben
-    print(final_dict)
+    
                 
 def main():
 
-    erstelleRechnung()
+    erstelleRechnung(5)
     my_dict = {'Bla': [], 'Bli': []}
     testding = randrange(5)
 
