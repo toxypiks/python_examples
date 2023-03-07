@@ -1,22 +1,28 @@
-from threading import Thread
+from threading import Thread, Event
 import time
 
 
-def gui():
-    for i in range(10):
+def gui(e):
+    while not e.is_set():
+        e.wait(1)
         print('#')
         time.sleep(1)
 
-        
-def work(how_long):
-    time.sleep(how_long)
+#work function calls e.set() to terminate gui function by given time  
 
-    
-t1 = Thread(target=gui, name='MyCoolGui', args=())
+def work(how_long, e):
+    time.sleep(how_long)
+    e.set()
+
+
+e = Event()
+
+
+t1 = Thread(target=gui, name='MyCoolGui', args=(e,))
 t1.start()
 
 
-t2 = Thread(target=work, name='MyCoolWorkFunc', args=(2,))
+t2 = Thread(target=work, name='MyCoolWorkFunc', args=(2, e))
 t2.start()
 
 t1.join()
